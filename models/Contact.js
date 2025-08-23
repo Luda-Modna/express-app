@@ -3,14 +3,14 @@ const { format } = require('date-fns');
 
 const contactsDB = [
   {
-    id: 0,
+    id: '0',
     name: 'Test',
     telNumber: '+380123456789',
     birthday: '2000-12-01',
     isFavourite: false,
   },
   {
-    id: 1,
+    id: '1',
     name: 'Test1',
     telNumber: '+380123456788',
     birthday: format(new Date(), 'Y-MM-dd'),
@@ -30,6 +30,11 @@ class ContactsDB {
 
   getContacts () {
     return [...this.contacts];
+  }
+
+  getContactsById (id) {
+    const foundIndex = this.contacts.findIndex(c => c.id === id);
+    return foundIndex === -1 ? null : this.contacts[foundIndex];
   }
 }
 

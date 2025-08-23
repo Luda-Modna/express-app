@@ -6,6 +6,17 @@ module.exports.getContacts = (req, res) => {
 };
 
 module.exports.createContact = (req, res) => {
-  const createdContact = ContactsDB.createContact(req.body);
+  const { body } = req;
+  const createdContact = ContactsDB.createContact(body);
   res.status(201).send(createdContact);
+};
+
+module.exports.getContactsById = (req, res) => {
+  const { id } = req.params;
+  const foundContact = ContactsDB.getContactsById(id);
+  if (foundContact) {
+    res.status(200).send(foundContact);
+  } else {
+    res.status(404).send('Contacts not found');
+  }
 };

@@ -13,15 +13,6 @@ app.get('/contacts', contactsController.getContacts);
 
 app.post('/contacts', contactsController.createContact);
 
-app.get('/contacts/:id', (req, res) => {
-  const {
-    params: { id },
-    query: { results, page },
-  } = req;
-  console.log(req.params);
-  console.log('query', req.query);
-
-  res.status(200).send('ok');
-});
+app.get('/contacts/:id', contactsController.getContactsById);
 
 module.exports = app;
