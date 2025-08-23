@@ -1,5 +1,5 @@
 const express = require('express');
-const { contactsController } = require('./controllers');
+const { contactsController, tasksController } = require('./controllers');
 
 const app = express();
 
@@ -17,6 +17,14 @@ app.get('/contacts/:id', contactsController.getContactsById);
 
 app.patch('/contacts/:id', contactsController.updateContactById);
 
-app.delete('/contacts/:id', contactsController.deleteContactById)
+app.delete('/contacts/:id', contactsController.deleteContactById);
+
+app.get('/tasks', tasksController.getTasks);
+
+app.post('/tasks', tasksController.createTask);
+
+app.get('/tasks/:id', tasksController.getTaskById);
+app.patch('/tasks/:id', tasksController.updateTasksById);
+app.delete('/tasks/:id', tasksController.deleteTasksById);
 
 module.exports = app;
