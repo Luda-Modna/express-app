@@ -15,10 +15,9 @@ module.exports.getContactsById = (req, res) => {
   const { id } = req.params;
   const foundContact = ContactsDB.getContactsById(id);
   if (foundContact) {
-    res.status(200).send(foundContact);
-  } else {
-    res.status(404).send('Contacts not found');
+    return res.status(200).send(foundContact);
   }
+  res.status(404).send('Contacts not found');
 };
 
 module.exports.updateContactById = (req, res) => {
@@ -29,10 +28,9 @@ module.exports.updateContactById = (req, res) => {
 
   const updatedContact = ContactsDB.updateContact(id, body);
   if (updatedContact) {
-    res.status(200).send(updatedContact);
-  } else {
-    res.status(404).send('Contacts not found');
+    return res.status(200).send(updatedContact);
   }
+  res.status(404).send('Contacts not found');
 };
 
 module.exports.deleteContactById = (req, res) => {
@@ -42,8 +40,7 @@ module.exports.deleteContactById = (req, res) => {
 
   const deletedContact = ContactsDB.deleteContact(id);
   if (deletedContact) {
-    res.status(204).send();
-  } else {
-    res.status(404).send('Contacts not found');
+    return res.status(204).send();
   }
+  res.status(404).send('Contacts not found');
 };
