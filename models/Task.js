@@ -56,16 +56,16 @@ class TasksDB {
   }
 
   getTasksById (id) {
-    const { tasks, getIndexById } = this;
+    const { tasks } = this;
 
-    const index = getIndexById(id);
+    const index = this.getIndexById(id);
     return index === -1 ? null : tasks[index];
   }
 
   updateTask (id, value) {
-    const { tasks, getIndexById } = this;
+    const { tasks } = this;
 
-    const index = getIndexById(id);
+    const index = this.getIndexById(id);
 
     if (index === -1) return null;
     tasks[index] = {
@@ -76,12 +76,12 @@ class TasksDB {
   }
 
   deleteTasks (id) {
-    const { tasks, getIndexById } = this;
+    const { tasks } = this;
 
-    const index = getIndexById(id);
+    const index = this.getIndexById(id);
 
     if (index === -1) return null;
-    return tasks.splice[(index, 1)];
+    return tasks.splice(index, 1);
   }
 }
 
