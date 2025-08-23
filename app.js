@@ -17,4 +17,6 @@ app.get('/contacts/:id', contactsController.getContactsById);
 
 app.patch('/contacts/:id', contactsController.updateContactById);
 
+app.delete('/contacts/:id', contactsController.deleteContactById)
+
 module.exports = app;
