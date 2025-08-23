@@ -15,4 +15,6 @@ app.post('/contacts', contactsController.createContact);
 
 app.get('/contacts/:id', contactsController.getContactsById);
 
+app.patch('/contacts/:id', contactsController.updateContactById);
+
 module.exports = app;

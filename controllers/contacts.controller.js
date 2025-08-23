@@ -20,3 +20,17 @@ module.exports.getContactsById = (req, res) => {
     res.status(404).send('Contacts not found');
   }
 };
+
+module.exports.updateContactById = (req, res) => {
+  const {
+    params: { id },
+    body,
+  } = req;
+
+  const updatedContact = ContactsDB.updateContact(id, body);
+  if (updatedContact) {
+    res.status(200).send(updatedContact);
+  } else {
+    res.status(404).send('Contacts not found');
+  }
+};

@@ -36,6 +36,29 @@ class ContactsDB {
     const foundIndex = this.contacts.findIndex(c => c.id === id);
     return foundIndex === -1 ? null : this.contacts[foundIndex];
   }
+
+  updateContact (id, value) {
+    const { contacts } = this;
+
+    const foundContactIndex = contacts.findIndex(c => c.id === id);
+    if (foundContactIndex !== -1) {
+      contacts[foundContactIndex] = {
+        ...contacts[foundContactIndex],
+        ...value,
+      };
+    }
+    return foundContactIndex === -1 ? null : contacts[foundContactIndex];
+  }
+
+  deleteContact (id) {
+    const { contacts } = this;
+
+    const foundContactIndex = contacts.findIndex(c => c.id === id);
+
+    return foundContactIndex === -1
+      ? null
+      : contacts.splice(foundContactIndex, 1);
+  }
 }
 
 const contactsDbInstace = new ContactsDB(contactsDB);
