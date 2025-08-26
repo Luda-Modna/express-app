@@ -2,7 +2,8 @@ const createError = require('http-errors');
 const { ContactsDB } = require('./../models');
 
 module.exports.getContacts = (req, res) => {
-  const contacts = ContactsDB.getContacts();
+  const { page = 1, results = 5 } = req.query;
+  const contacts = ContactsDB.getContacts(page, results);
   res.status(200).send(contacts);
 };
 
