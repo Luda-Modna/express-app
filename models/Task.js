@@ -1,5 +1,4 @@
 const { v4: uuidv4 } = require('uuid');
-const { format } = require('date-fns');
 
 const tasksDB = [
   {
@@ -32,6 +31,66 @@ const tasksDB = [
     deadline: '2025-09-01',
     isDone: false,
   },
+  {
+    id: '5',
+    body: ' React',
+    deadline: '2025-08-25',
+    isDone: false,
+  },
+  {
+    id: '6',
+    body: 'qwerty',
+    deadline: '2025-08-27',
+    isDone: false,
+  },
+  {
+    id: '7',
+    body: 'paginate',
+    deadline: '2025-08-28',
+    isDone: true,
+  },
+  {
+    id: '8',
+    body: 'asdfghj',
+    deadline: '2025-08-30',
+    isDone: false,
+  },
+  {
+    id: '9',
+    body: 'zxcvbnm',
+    deadline: '2025-09-01',
+    isDone: false,
+  },
+  {
+    id: '10',
+    body: 'Прочитати React',
+    deadline: '2025-08-25',
+    isDone: false,
+  },
+  {
+    id: '11',
+    body: 'Зробити верстку',
+    deadline: '2025-08-27',
+    isDone: false,
+  },
+  {
+    id: '12',
+    body: 'Виправити баг ',
+    deadline: '2025-08-28',
+    isDone: true,
+  },
+  {
+    id: '13',
+    body: 'Підготувати питання ',
+    deadline: '2025-08-30',
+    isDone: false,
+  },
+  {
+    id: '14',
+    body: 'Написати тестові завдання',
+    deadline: '2025-09-01',
+    isDone: false,
+  },
 ];
 
 class TasksDB {
@@ -39,8 +98,8 @@ class TasksDB {
     this.tasks = [...arr];
   }
 
-  getTasks () {
-    return [...this.tasks];
+  getTasks (page, results) {
+    return [...this.tasks.slice((page - 1) * results, page * results)];
   }
 
   createTask (newTask) {
