@@ -12,7 +12,7 @@ module.exports.validateContactOnCreate = async (req, res, next) => {
     req.body = validatedContact;
     next();
   } catch (e) {
-    res.status(422).send('Validation Error');
+    next(e);
   }
   next();
 };
@@ -26,7 +26,7 @@ module.exports.validateContactOnUpdate = async (req, res, next) => {
     req.body = validatedContact;
     next();
   } catch (e) {
-    res.status(422).send('Validation Error');
+    next(e);
   }
   next();
 };
