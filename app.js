@@ -1,6 +1,6 @@
 const express = require('express');
 const { contactsController, tasksController } = require('./controllers');
-const { validate, errorHandlers } = require('./middleware');
+const { validate, errorHandlers, validateTask } = require('./middleware');
 
 const app = express();
 
@@ -30,12 +30,20 @@ app.delete('/contacts/:id', contactsController.deleteContactById);
 
 app.get('/tasks', tasksController.getTasks);
 
-app.post('/tasks', tasksController.createTask);
+app.post(
+  '/tasks',
+  validateTask.validateTasksOnCreate,
+  tasksController.createTask
+);
 
 app.get('/tasks/:id', tasksController.getTaskById);
-app.patch('/tasks/:id', tasksController.updateTasksById);
-app.delete('/tasks/:id', tasksController.deleteTasksById);
 
+app.patch(
+  '/tasks/:id',
+  validateTask.validateTasksOnUpdate,
+  tasksController.updateTasksById
+);
+app.delete('/tasks/:id', tasksController.deleteTasksById);
 
 app.use(errorHandlers.validationErrorHandler, errorHandlers.errorHandler);
 
